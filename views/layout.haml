@@ -1,0 +1,61 @@
+!!! 5
+%html{ :lang => :en }
+  %head
+    %meta{ :charset => 'utf-8' }
+    %title mfojtik.blog
+    /[if lt IE 9]
+      %script{ :src => '/html5.js' }
+    %script{ :src => '/jquery-1.4.2.min.js' }
+    %script{ :src => '/bootstrap/js/bootstrap-alerts.js' }
+    %link{ :href => '/bootstrap/bootstrap.min.css', :rel => :stylesheet }
+    %link{ :href => '/app.css', :rel => :stylesheet }
+    %script{ :src => '/jquery.cuteTime.min.js'}
+    %script{ :src => '/app.js' }
+    %body
+      .container
+        .content
+          .page-header
+            %h1
+              - if @title
+                =@title
+              - else
+                %a{ :href => '/'} mfojtik.blog
+          .row
+            .span10=yield
+            .span4
+              %script{ :src => 'http://widgets.twimg.com/j/2/widget.js'}
+              :javascript
+                new TWTR.Widget({
+                  version: 2,
+                  type: 'profile',
+                  rpp: 4,
+                  interval: 3000,
+                  width: 'auto',
+                  height: 330,
+                  theme: {
+                    shell: {
+                      background: '#ffffff',
+                      color: '#DD4B39'
+                    },
+                    tweets: {
+                      background: '#ffffff',
+                      color: '#7a7a7a',
+                      links: '#DD4B39'
+                    }
+                  },
+                  features: {
+                    scrollbar: false,
+                    loop: false,
+                    live: true,
+                    hashtags: true,
+                    timestamp: true,
+                    avatars: false,
+                    behavior: 'default'
+                  }
+                }).render().setUser('mfojtik').start();
+        %footer
+          %p
+            &copy;  mfojtik's brain is licensed under a
+            %a{:href => 'http://creativecommons.org/licenses/by-sa/3.0/us', :target => '_blank'}
+              Creative Commons Attribution-Share Alike 3.0 United
+

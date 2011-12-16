@@ -1,11 +1,9 @@
-require 'rubygems'
 require 'ostruct'
 require 'digest/sha1'
-require 'sinatra/base'
-require "rack/cache"
-require 'haml'
-require 'redcarpet'
 require 'time'
+
+require 'bundler/setup'
+Bundler.require(:default)
 
 module Mifo
 
@@ -38,7 +36,7 @@ module Mifo
     end
 
     def body
-      @raw_content.each_line.to_a[metadata_end_index..-1].join("\n")
+      @raw_content.each_line.to_a[metadata_end_index+1..-1].join
     end
 
     def sha1
@@ -64,7 +62,12 @@ module Mifo
 
   class Site < Sinatra::Base
 
-    use Rack::Cache
+    configure :production do
+      use Rack::Cache
+      before do
+        expires 500, :public,  :must_revalidate
+      end
+    end
 
     error Errno::ENOENT do
       status 404
@@ -76,12 +79,10 @@ module Mifo
 
     helpers do
       def markdown(text)
-        Tilt::RedcarpetTemplate.new { |t| text }.render
+        puts text.inspect
+        m = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+        m.render(text)
       end
-    end
-
-    before do
-      expires 500, :public,  :must_revalidate
     end
 
     get '/' do
