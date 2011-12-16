@@ -79,7 +79,6 @@ module Mifo
 
     helpers do
       def markdown(text)
-        puts text.inspect
         m = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
         m.render(text)
       end
