@@ -2,7 +2,7 @@ title: Deltacloud presentation at FOSDEM 2012
 updated: 07/Feb/2012 11:30
 ###
 
-<a href="http://deltacloud.org" target="_blank">Deltacloud API<></a> was
+<a href="http://deltacloud.org" target="_blank">Deltacloud API</a> was
 presented at <a href="http://fosdem.org" target="_blank">FOSDEM 2012</a> in
 Brussels.  As I promised to some people on the conference, I published an <a
 href="http://omicron.mifo.sk/dc"  target="_blank">online version</a> of my talk.
