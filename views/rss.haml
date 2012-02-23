@@ -1,0 +1,25 @@
+%rss(version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom")
+
+  %channel
+    %title mfojtik's blog
+    %link http://mifo.sk/rss
+    %atom:link(href="http://mifo.sk"
+               rel="self"
+               type="application/rss+xml")
+    %description Michal Fojtik's sick mind
+    %language en-US
+    %lastBuildDate=@posts.first.last_updated.rfc2822
+    %webMaster mi@mifo.sk (Michal Fojtik)
+
+    -@posts.each do |post|
+      %item
+        %title=post.title
+        %link="http://mifo.sk/#{post.permalink}"
+        %description=text(post.body)
+        %author mi@mifo.sk (Michal Fojtik)
+        %pubDate=post.first.last_updated.rfc2822
+        %guid(isPermaLink='true')="http://mifo.sk/#{post.permalink}"
+        %comments='http://mifo.sk/' + post.permalink + '#disqus_thread'
+        %content:encoded <![CDATA[#{markdown(post.body)}]]>

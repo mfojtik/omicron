@@ -1,6 +1,7 @@
 require 'ostruct'
 require 'digest/sha1'
 require 'time'
+require 'nokogiri'
 
 require 'bundler/setup'
 Bundler.require(:default)
@@ -82,12 +83,23 @@ module Mifo
         m = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
         m.render(text)
       end
+
+      def text(t)
+        Nokogiri::HTML(t).text
+      end
     end
 
     get '/' do
       @posts = Post.latest
       etag sha1(@posts.map { |p| p.sha1 }.join )
       haml :index
+    end
+
+    get '/rss' do
+      @posts = Post.latest
+      etag sha1(@posts.map { |p| p.sha1 }.join )
+      content_type 'application/rss+xml'
+      haml(:rss, :format => :xhtml, :escape_html => true, :layout => false)
     end
 
     get '/:permalink' do
