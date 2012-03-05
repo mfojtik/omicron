@@ -69,6 +69,10 @@ module Mifo
     #    expires 500, :public,  :must_revalidate
     #  end
     #end
+    configure :development do
+      enable :logging
+      enable :dump_errors
+    end
 
     error Errno::ENOENT do
       status 404
