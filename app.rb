@@ -63,12 +63,12 @@ module Mifo
 
   class Site < Sinatra::Base
 
-    #configure :production do
-    #  use Rack::Cache
-    #  before do
-    #    expires 500, :public,  :must_revalidate
-    #  end
-    #end
+    configure :production do
+      use Rack::Cache
+      before do
+        expires 500, :public,  :must_revalidate
+      end
+    end
     configure :development do
       enable :logging
       enable :dump_errors
