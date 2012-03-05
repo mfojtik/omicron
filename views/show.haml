@@ -1,23 +1,22 @@
 %article
   %header
-    - @title = @post.title
-    %p.published
-      %span.label.notice
+    %h2=@post.title
+  =markdown(@post.body)
+  %footer
+    %ul.breadcrumb
+      %li
+        %a{ :href => '/', :rel => :index } Home
+        %span.divider='/'
+      %li.active
         %time{ :pubdate => :pubdate}=@post.last_updated
-      &nbsp;
-      %span.label
-        %a{ :href => '/', :rel => :index } &#8701; Back
-    =markdown(@post.body)
-    %footer
-      %p
-        %a.twitter-share-button{ :'data-via' => :mfojtik, :'data-lang' => :en, :href => "https://twitter.com/share" } Tweet
-        .g-plusone{ :'data-size' => 'small', :style => :inline }
-      %script{ :src => 'http://disqus.com/forums/mfojtik/embed.js'}
-      #disqus_thread
-      :javascript
-        var disqus_shortname = 'mfojtik';
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
+    %a.twitter-share-button{ :'data-via' => :mfojtik, :'data-lang' => :en, :href => "https://twitter.com/share" } Tweet
+    .g-plusone{ :'data-size' => 'medium', :style => :inline }
+    %script{ :src => 'http://disqus.com/forums/mfojtik/embed.js'}
+    #disqus_thread
+    :javascript
+      var disqus_shortname = 'mfojtik';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();

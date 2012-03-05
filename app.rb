@@ -63,12 +63,12 @@ module Mifo
 
   class Site < Sinatra::Base
 
-    configure :production do
-      use Rack::Cache
-      before do
-        expires 500, :public,  :must_revalidate
-      end
-    end
+    #configure :production do
+    #  use Rack::Cache
+    #  before do
+    #    expires 500, :public,  :must_revalidate
+    #  end
+    #end
 
     error Errno::ENOENT do
       status 404
@@ -95,7 +95,11 @@ module Mifo
       haml :index
     end
 
-    get '/(rss|articles.xml|atom.xml)' do
+    get %r{/css/([\w_\-]+)\.(css|less)} do |file, ext|
+      less :"bootstrap/#{file}"
+    end
+
+    get %r{/(rss|atom|articles)(.xml)?} do
       @posts = Post.latest
       etag sha1(@posts.map { |p| p.sha1 }.join )
       content_type 'application/rss+xml'
