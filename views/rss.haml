@@ -22,4 +22,4 @@
         %pubDate=post.last_updated.strftime('%a, %d %b %y %T %z')
         %guid(isPermaLink='true')="http://mifo.sk/#{post.permalink}"
         %comments='http://mifo.sk/' + post.permalink + '#disqus_thread'
-        %content:encoded <![CDATA[#{markdown(post.body)}]]>
+        %content:encoded <![CDATA[#{Nokogiri::HTML(markdown(post.body)).text}]]>
