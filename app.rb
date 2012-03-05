@@ -95,7 +95,7 @@ module Mifo
       haml :index
     end
 
-    get '/rss' do
+    get '/(rss|articles.xml|atom.xml)' do
       @posts = Post.latest
       etag sha1(@posts.map { |p| p.sha1 }.join )
       content_type 'application/rss+xml'

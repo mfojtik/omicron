@@ -19,7 +19,7 @@
         %link="http://mifo.sk/#{post.permalink}"
         %description=text(post.body)
         %author mi@mifo.sk (Michal Fojtik)
-        %pubDate=post.first.last_updated.strftime('%a, %d %b %y %T %z')
+        %pubDate=post.last_updated.strftime('%a, %d %b %y %T %z')
         %guid(isPermaLink='true')="http://mifo.sk/#{post.permalink}"
         %comments='http://mifo.sk/' + post.permalink + '#disqus_thread'
         %content:encoded <![CDATA[#{markdown(post.body)}]]>
