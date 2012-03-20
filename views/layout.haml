@@ -15,26 +15,20 @@
     %body
       .container
         .content
-          .page-header
-            .row
-              .span7
-                %h1
-                  - if @title
-                    =@title
-                  - else
-                    %a{ :href => '/'} Michal Fojtik's sick mind
-              .span4.bar
-                %a{ :href => '/rss' }
-                  %i.icon-fire
-                  RSS
-                |
-                %a{ :href => 'http://www.linkedin.com/in/michalfojtik', :target => '_blank' }
-                  %i.icon-user
-                  LinkedIn
-                |
-                %a{ :href => 'http://github.com/mifo', :target => '_blank' }
-                  %i.icon-cog
-                  Github
+          .page-header.row
+            .span7
+              %h1
+                - if @title
+                  =@title
+                - else
+                  %a{ :href => '/'} Michal Fojtik's brain
+            .span4.bar
+              %a{ :href => 'http://www.linkedin.com/in/michalfojtik', :target => '_blank', :title => "About me" }
+                %i.icon-user
+              %a{ :href => 'http://github.com/mifo', :target => '_blank', :title => "Github code" }
+                %i.icon-cog
+              %a{ :href => '/rss', :title => "RSS stream", :rel => :rss }
+                %i.icon-fire
           .row
             .span7.main=yield
             .span4

@@ -1,7 +1,21 @@
+%article
+  %header
+    %h2 Welcome stranger
+  %p.intro
+    I assume you land on this segment of internet by mistake, so let me
+    introduce it. This warm place is where I ussualy write about things
+    that are somehow interesting for me and for some reason I think that
+    sharing them outside my brain could be worth. I ussualy writing about
+    the
+    %a{:href => 'http://deltacloud.org'} project 
+    I'm involved and about my 
+    %a{:href => 'http://ruby-lang.org'} favorite programming language
+  %br/
 %nav
   %ul
     - @posts.each do |p|
       %li
         %time{ :pubdate => :pubdate }=p.last_updated
-        %a{ :href => '/' + p.permalink }=p.title
+        %h3
+          %a{ :href => '/' + p.permalink }=p.title
 

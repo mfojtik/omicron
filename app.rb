@@ -64,9 +64,12 @@ module Mifo
   class Site < Sinatra::Base
 
     configure :production do
-      use Rack::Cache
+      use Rack::Cache,
+        :verbose => true,
+        :allow_revalidate => true
+
       before do
-        expires 500, :public,  :must_revalidate
+        expires 500, :public
       end
     end
 
@@ -75,6 +78,10 @@ module Mifo
       enable :dump_errors
       enable :logging
       use Rack::CommonLogger
+
+      before do
+        headers['Cache-Control'] = 'no-cache'
+      end
     end
 
     error Errno::ENOENT do
@@ -99,7 +106,9 @@ module Mifo
     end
 
     get %r{/css/([\w_\-]+)\.(css|less)} do |file, ext|
-      less :"bootstrap/#{file}"
+      output = less :"bootstrap/#{file}"
+      etag sha1(output)
+      output
     end
 
     get %r{/(rss|atom|articles)(.xml)?} do
