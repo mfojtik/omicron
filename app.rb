@@ -90,8 +90,16 @@ module Mifo
 
     helpers do
       def markdown(text)
-        m = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
-        m.render(text)
+        renderer = Redcarpet::Render::HTML.new(
+          :no_links => false,
+          :xhtml => true,
+          :with_toc_data => true
+        )
+        m = Redcarpet::Markdown.new(renderer,
+                                    :autolink => true,
+                                    :lax_html_blocks => true,
+                                    :space_after_headers => true)
+        HtmlPress.compress(m.render(text))
       end
 
       def text(t)
@@ -121,7 +129,7 @@ module Mifo
     get '/:permalink' do
       @post = Post.by_permalink(params[:permalink])
       etag @post.sha1
-      haml :show
+      haml :show, :ugly => true
     end
 
     private
