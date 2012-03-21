@@ -6,16 +6,8 @@
   font-weight : 400;
 }
 
-code, pre {
-  font-family : 'inconsolata', 'Droid Sans Mono', monospace;
-}
-
-p a {
-  border-bottom : 1px dotted @gray;
-}
-
-p a:hover {
-  text-decoration : none;
+.twtr-ft {
+  display : none;
 }
 
 .content {
@@ -72,12 +64,28 @@ p a:hover {
     }
 
     article {
+      code {
+        padding : 2px 4px;
+
+        pre {
+          font-family : 'inconsolata', 'Droid Sans Mono', monospace;
+          font-size : 12px;
+        }
+      }
+
+      p {
+        a { border-bottom : 1px dotted @gray; };
+        a:hover { text-decoration : none };
+      }
+
       h2 {
         font-size: 20px; 
         font-family: @headerFontFamily;
         font-weight : 400;
       }
-      header h2 { font-size: 150%; margin-bottom : 1em; }
+
+      header h2 { margin-bottom : 0.5em; }
+
       footer {
         margin : 1em 0;
         .breadcrumb { text-align : right; }
