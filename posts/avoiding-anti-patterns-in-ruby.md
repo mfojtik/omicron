@@ -2,11 +2,11 @@ title: Avoiding anti-patterns in Ruby - Arrays
 updated: 21/Mar/2012 14:50
 ###
 
-Since I came to Ruby from the Java and PHP world I found many expressions
-used in Ruby cryptic and I was trying to avoid them in my daily life.
-After years and thousand lines of Ruby code I've red I feel a need to change
-the way how I write the code. I want to make my code look better, readable
-and preferably save keystrokes.
+Since I came to Ruby from the Java and PHP world I've found many expressions
+used in Ruby cryptic and I've been trying to avoid them in my daily life.
+After years and thousand lines of Ruby code I've read, I feel a need to change
+the way I write the code. I want to make my code look better, readable
+and preferably save some keystrokes.
 
 > In software engineering, an anti-pattern (or antipattern) is a pattern that
 > may be commonly used but is ineffective and/or counterproductive in practice.
@@ -15,7 +15,7 @@ and preferably save keystrokes.
 For, each or map?
 -----------------
 
-Iteration is the perfect example what I should improve. When I started writing
+Iteration is the perfect example of what I should improve. When I started writing
 the Ruby code, I was used to write constructions like this:
 
 <pre class="sh_ruby">
@@ -26,16 +26,16 @@ the Ruby code, I was used to write constructions like this:
   end
 </pre>
 
-This syntactically perfect Ruby code. Also for PHP/Java newcomers it also looks
-perfectly safe. However, it's not what rest of the Ruby programmers usually
-write. As you may already know, Ruby is object-oriented language and `[]` in
+This is syntactically perfect Ruby code. Also for the PHP/Java newcomers it looks
+perfectly safe. However, it's not what the rest of the Ruby programmers usually
+write. As you may already know, Ruby is an object-oriented language and `[]` in
 Ruby is just an alias for the `Array.new`. If you look to the [Array](http://www.ruby-doc.org/core-1.9.3/Array.html)
-class documentation, you will find many interesting methods, I want to describe
+class documentation, you will find many interesting methods I want to describe
 below:
 
 **`.each`**
 
-The each method can be used for iterating the Array in case you don't want to
+The 'each' method can be used for iterating the Array in case you don't want to
 return anything from the iteration block:
 
 <pre class="sh_ruby">
@@ -43,7 +43,7 @@ return anything from the iteration block:
   # => [1,2,3]
 </pre>
 
-This method is good if you want modify some object outside the iteration block,
+This method is good if you want to modify some object outside the iteration block,
 or just call some method without caring to much about what the method returns,
 like:
 
@@ -63,15 +63,15 @@ For example, you can create an alias in Array for `.each`:
 
 This will immediately yell on you what this code is trying to do.
 Please do not use this method for changing the content of variables or creating
-a new arrays.
+new arrays.
 
-In most cases the `.each` method can be replaced with some of the
+In most cases, the `.each` method can be replaced with some of the
 methods bellow:
 
 **`.map`**
 
-There are cases when you want to modify the content of an Array. And return the
-modified content. In PHP you usually do a clone of the Array or create a new array
+There are cases when you want to modify the content of an Array and return the
+modified content. In PHP, you usually do a clone of the Array or create a new array
 with updated items. In Ruby this is not necessary:
 
 <pre class="sh_ruby">
@@ -84,20 +84,20 @@ with updated items. In Ruby this is not necessary:
 </pre>
 
 As you may guess, there are few glitches in this code. First, you create a new
-variable (mean you allocate space for it). In many cases you also left the
-variable `a` abandoned, stealing quietly your memory. The right Ruby approach
-the `.map` method will be used:
+variable (mean you allocate space for it). In many cases you also leave the
+variable `a` abandoned, stealing your memory quietly. The right Ruby approach
+is to use the `.map` method:
 
 <pre class="sh_ruby">
   a = [1,2,3]
   a.map { |i| i+1 } # => [2, 4, 5]
 </pre>
 
-The `.map` method here will iterate through array and give you chance to modify
-the content of it. Then it will return the modified Array back to you, but keep
+The `.map` method here iterates through array and gives you chance to modify
+the content of it. Then it returns the modified Array back to you, but keeps
 the original content of `a` variable untouched.
-If you don't want to return anything but instead modify the original array instead,
-just use the `.map!` method:
+If you don't want to return anything, but just want to modify the original array
+instead, use the `.map!` method:
 
 <pre class="sh_ruby">
   a = [1,2,3]
@@ -107,8 +107,8 @@ just use the `.map!` method:
 
 **`.any?`**
 
-Next anti-pattern commonly seen in Ruby newcomers world is to use `.each` to iterate
-though the Array and return boolean when it found a match:
+The next anti-pattern commonly seen by Ruby newcomers, is to use `.each` to iterate
+through the Array and return a boolean when it finds a match:
 
 <pre class="sh_ruby">
   def find_odd_number(arr)
@@ -119,8 +119,8 @@ though the Array and return boolean when it found a match:
 </pre>
 
 Please keep in mind that the `return` statement is used **only** for returning
-from a method or Proc/lambda. And your should then have this statement in
-context if this method, not in context of `.each` block.
+from a method or Proc/lambda. And you should then use this statement in the
+context of this method, not in the context of the `.each` block.
 The correct Ruby approach here would be to use the `any?` method to search the
 array:
 
@@ -130,10 +130,10 @@ array:
   end
 </pre>
 
-The example above will return true if there is an odd number in the array. No
+The example above returns `true` if there is an odd number in the array. No
 need to write over-complicated `.each` iterations.
 
-The ultimate main goal of every Ruby programmer, who care about the code he is
+The ultimate main goal of every Ruby programmer who care about the code he is
 writing is to make the reader of his code understand what the author is trying to
 say (without using comments). Ruby offers many 'syntax' sugar methods to achieve
 this goal. For example:
@@ -145,7 +145,7 @@ this goal. For example:
   a.find { |i| i == 2 } # => 2
 </pre>
 
-As you may see, Ruby is trying to be very descriptive for the reader, so you
+As you can see, Ruby is trying to be very descriptive for the reader, so you
 don't need to read too much code to get a clue what the code is trying to do.
 
 There are many [aliases](http://ruby.about.com/od/rubyfeatures/a/aliasing.htm)
@@ -164,8 +164,8 @@ access first or last item of the array, you can think about writing this:
   puts a[a.size-1] # => 'd'
 </pre>
 
-Since the indexing of arrays in Ruby starting from zero, the programmer may know
-that you're trying to access first element. But why to make people think about
+Since the indexing of arrays in Ruby starts from zero, the programmer may know
+that you're trying to access first element. But why make people think about
 indexing numbers? For example, you can use the `.first` method in Array to
 retrieve the first item. In this case, it doesn't really matter what is the
 index number of first element:
@@ -175,26 +175,26 @@ index number of first element:
   puts a.first # => 'a'
 </pre>
 
-The same thing apply for the last item in array. As you might see in the first
+The same thing applies for the last item in array. As you might see in the first
 example, the calculation is quite strange and it does not yell on you that you
-want to return last element. So there is a `.last` method that will hide this
-calculation for you and yell on reader that you want to access the last element.
+want to return the last element. So there is the `.last` method that will hide this
+calculation for you and yell on the reader that you want to access the last element.
 
 So a quick summary:
 
-* Use `.each` method only when you're not modifying any variable in current
-  context. Modifying the state of object using exclamation mark methods is
+* Use the `.each` method only when you're not modifying any variable in the current
+  context. Modifying the state of an object using exclamation mark methods is
   perfect use-case for this.
 
-* Use `.map` when you need to modify content of variable or return a modified
+* Use `.map` when you need to modify content of a variable or return a modified
   version of the array. This method has also an alias `.select`. Use it if it
   makes your code more readable.
 
-* Use `.any?` when you're searching for an item in the array that match to
-  condition. If you're doing a simple search, you can also use `.include?`
+* Use `.any?` when you're searching for an item in the array that matches to
+  given condition. If you're doing a simple search, you can also proceed with `.include?`
 
 * Look to the Array docs every time you're doing something nasty with `.each`.
-  There will be always method that will do better job with less amount of code.
+  There will always be a method that will do better a job with less amount of code.
 
 * Try to avoid accessing elements in array using the array index. If you want to
-  get last or first item, there is an helper for that.
+  get the last or first item, there is a helper for that.
