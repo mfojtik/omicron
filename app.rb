@@ -122,7 +122,7 @@ module Mifo
     get %r{/(rss|atom|articles)(.xml)?} do
       @posts = Post.latest
       etag sha1(@posts.map { |p| p.sha1 }.join )
-      content_type 'application/rss+xml'
+      content_type 'text/xml;rss;charset=utf-8'
       haml(:rss, :format => :xhtml, :escape_html => true, :layout => false)
     end
 
