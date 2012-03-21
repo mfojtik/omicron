@@ -10,6 +10,9 @@
     %script{ :src => '/js/app.js' }
     /[if lt IE 9]
       %script{ :src => '/js/html5.js' }
+    %script{ :type => 'text/javascript', :src => 'http://use.typekit.com/jko7fyl.js' }
+    :javascript
+      try{Typekit.load();}catch(e){}
     %link{ :href => '/css/bootstrap.css', :rel => :stylesheet }
     %link{ :href => '/css/application.css', :rel => :stylesheet }
     %body
