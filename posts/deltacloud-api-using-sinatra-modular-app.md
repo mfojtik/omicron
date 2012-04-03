@@ -5,23 +5,23 @@ updated: 03/Apr/2012 22:50
 When we started the [Deltacloud API](http://deltacloud.org) project three years
 ago, we thought the best way how to do it would be to use the
 [Sinatra](http://www.sinatrarb.org) framework. This Ruby framework provides a
-simple DSL for writing small-size web applications.  And since Deltacloud API
+simple DSL for writing *small-size* web applications. And since Deltacloud API
 does not use any database or complicated messaging system it is perfect use-case
-for Sinatra app.
+for **Sinatra application**.
 
 However, after a while, we realized that using just plain Sinatra routes is not
-perfectly [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself), since we
-repeated too much code and actions. So we developed the Rabbit. This small DSL
+perfectly DRY, since we
+repeated too much code and actions. So we developed the **Rabbit**. This small DSL
 allows us to build a robust REST API application with many collections and
 operations with just little effort.
 
 After a while, the Sinatra guys came with a [new
 approach](http://www.sinatrarb.com/extensions.html) how to write applications.
-Instead of using the 'application' way, where you type routes directly to the
+Instead of using the *application way*, where you type routes directly to the
 Ruby file, you can create classes, inherit from `Sinatra::Base` class and then
 run these classes as [Rack](http://rack.rubyforge.org) containers.
 This approach has many benefits. The biggest one is that every Sinatra class
-could be mounted as a Rack container to other Rack compatible framework (like
+could be mounted as a **Rack container** to other Rack compatible framework (like
 Rails). In simple words, you can connect pieces of your web application like
 puzzle. The second benefit is that your application doesn't run immediately
 after it's launched by the Ruby interpreter. Instead you need to use some 'rack'
@@ -29,7 +29,7 @@ deployer, like `rackup` or `thin` to spawn the whole application.
 
 We realized that using the 'old' way to write Sinatra apps could be somehow
 limiting us in future and it could disallow us to use power of the Rack containers.
-Also, we keep listening to community and community is demanding a Ruby library,
+Also, we keep listening to community and community is demanding a **Ruby library**,
 that will use our 'drivers' with a rock solid API, just like `fog` is doing.
 
 So I spent several hours thinking about how to simply rewrite Deltacloud API in
@@ -62,7 +62,7 @@ repository](http://github.com/mifo/deltacloud-modular).
 
 Of course, I have made big changes to our internal code structure. First, all
 collections are implemented as independent `Sinatra::Base` classes and isolated
-in application as 'modules'. The sample collection looks like this:
+in application as 'modules'. The simple *collection* looks like this:
 
 <pre class="sh_ruby">
 module Deltacloud::Collections
@@ -87,10 +87,10 @@ As you can see, the syntax is the same as in internal Deltacloud API Rabbit,
 however there are some tweaks I made to make it more effective. The first tweak
 you can see is that for the `:show` operation, there is no `param :id` defined.
 I realized that some particular REST operations we have in Rabbit, always set
-this parameter, so now Rabbit will do it automatically. The next thing is that I
+this parameter, so now Rabbit will **do it automatically**. The next thing is that I
 removed `description` (well is still there). The truth is that we did not used it
 too often and the description of collections and operations was just repeating
-all the time. Now Rabbit is generating this automatically.
+all the time. Now Rabbit is generating this automatically as well.
 
 There are more tweaks I want to demonstrate on the other collection example:
 
@@ -99,7 +99,10 @@ module Deltacloud::Collections
   class Instances < Base
 
     check_capability :for => lambda { |m| driver.respond_to? m }
-    check_features :for => lambda { |c, f| driver.class.has_feature?(c, f) }
+    check_features :for => lambda do |c, f| 
+      driver.class.has_feature?(c, f)
+    end
+
 
     features do
       feature :user_name, :for => :instances do
@@ -128,7 +131,7 @@ module Deltacloud::Collections
         param :realm_id,     :string, :optional
         param :hwp_id,       :string, :optional
         control do
-          @instance = driver.create_instance(credentials, params[:image_id], params)
+          @instance = driver.create_instance
           # ...
         end
       end
@@ -166,9 +169,10 @@ available in the driver. So in other words, when the driver does not have
 status 417 (Precondition failed) to the client. The reason I used lambda function is
 that the `driver` variable can change 'per-request' as the client switch the
 Deltacloud API driver. So the evaluation whether the operation should be executed or
-not is done for every request.
+not is done for every request. The `:with_capability` option will tell Rabbit
+what method should be checked on driver.
 
-The next important things are 'features'. In Deltacloud API we support many
+The next important things are **features**. In Deltacloud API we support many
 cloud providers and for some of them you can use additional parameters in the HTTP
 request to set or change features, that are available only for a particular
 driver.
@@ -179,10 +183,29 @@ now for any other Sinatra-based project. So I added another lambda, to check if 
 driver that is currently set for the current HTTP request has defined the given feature.
 
 If it has the feature defined, then we add a new parameter to the particular operation.
-In simple words, if the EC2 driver has 'user_data' feature enabled in the driver,
+In simple words, if the *EC2 driver* has **user_data feature** enabled in the driver,
 then additional `:user_data` parameter will be added to the `:create` operation.
+
+The last, but important change is that I renamed those operation which always
+acts as 'actions' to `action`. This operation will automatically get the `:id`
+parameter and is defined as HTTP POST (this can be changed using `:http_method`).
 
 I think the biggest pain is now resolved and there is now a way to go to implement
 modular Deltacloud API. There is still a ton of work to be done, like importing
 all the unit tests and cucumber tests we have in Deltacloud currently, or the automatic
 documentation system.
+
+The project could be now deployed or mounted as regular Rack container. I used
+the `config.ru` file, which define how it should be started:
+
+<pre class="sh_ruby">
+  map '/api' do
+    use Rack::Static, :urls => ["/stylesheets", "/javascripts"], 
+                      :root => "public"
+    run Rack::Cascade.new([Deltacloud::API])
+  end
+</pre>
+
+The same approach can be used in Rails or Padrino framework, so in theory, you
+can access Deltacloud API without your application, without running it as
+separate daemon.
