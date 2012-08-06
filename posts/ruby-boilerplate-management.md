@@ -58,6 +58,7 @@ I want to keep in mind all the time, I added possiblity to create simple
 aliases that are stored locally on your computer. For example:
 
 <code>$ bp alias create 3265768 sinatra</code>
+
 <code>$ bp use sinatra</code>
 
 And because it would be nice to collect all available boilerplates somewhere,
