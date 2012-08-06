@@ -25,7 +25,7 @@ instruct boilerplater to download files and store them into defined locations.
 
 Example:
 
-<script src="https://gist.github.com/3265768.js"> </script>
+<script src="https://gist.github.com/3265768.js"></script>
 
 In this case, boilerplater will create Gemfile, app.rb, views and download
 the twitter bootstrap CSS files to the 'public/css' folder. You can start
@@ -48,7 +48,7 @@ Commands:
   bp alias  list                  - List all aliases
 
 Options:
-  --prefix, -p <s>:   Prefix for boilerplate files (default: .)
+  --prefix, -p   s:   Prefix for boilerplate files (default: .)
         --help, -h:   Show this message
 </pre>
 
