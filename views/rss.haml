@@ -17,9 +17,9 @@
       %item
         %title=post.title
         %link="http://mifo.sk/#{post.permalink}"
-        %description=text(post.body)
+        %description=text(post.body)[0..50]
         %author mi@mifo.sk (Michal Fojtik)
         %pubDate=post.last_updated.strftime('%a, %d %b %y %T %z')
         %guid(isPermaLink='true')="http://mifo.sk/#{post.permalink}"
         %comments='http://mifo.sk/' + post.permalink + '#disqus_thread'
-        %content:encoded <![CDATA[#{Nokogiri::HTML(markdown(post.body)).text}]]>
+        %content:encoded <![CDATA[#{markdown(post.body)).text}]]>
