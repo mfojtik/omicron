@@ -5,9 +5,6 @@
   %footer
     %ul.breadcrumb
       %li
-        %a{ :href => '/', :rel => :index } Home
-        %span.divider='/'
-      %li.active
         %time{ :pubdate => :pubdate}=@post.last_updated
     %a.twitter-share-button{ :'data-via' => :mfojtik, :'data-lang' => :en, :href => "https://twitter.com/share" } Tweet
     .g-plusone{ :'data-size' => 'medium', :style => :inline }

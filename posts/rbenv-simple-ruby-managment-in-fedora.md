@@ -38,7 +38,7 @@ $PATH:
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 </pre>
 And finally you need to load 'rbenv' to enable bash autocompletion and plugins:
-<pre>
+<pre class='sh'>
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 </pre>
 Now you're ready to use rbenv. Do not forget to reload your bash session to
@@ -58,7 +58,7 @@ of all possible platforms, type 'rbenv install -l'.
 
 If you're on Fedora 17 and you have problems building Ruby 1.8.7-p370 (dl.c)
 you can fix it by using this command:
-<pre>
+<pre class='sh'>
 CONFIGURE_OPTS=--without-dl rbenv install 1.8.7-p370
 </pre>
 Switching between different Ruby versions is not so user-friendly as with RVM

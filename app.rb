@@ -63,27 +63,6 @@ module Mifo
 
   class Site < Sinatra::Base
 
-    configure :production do
-      use Rack::Cache,
-        :verbose => true,
-        :allow_revalidate => true
-
-      before do
-        expires 500, :public
-      end
-    end
-
-    configure :development do
-      enable :logging
-      enable :dump_errors
-      enable :logging
-      use Rack::CommonLogger
-
-      before do
-        headers['Cache-Control'] = 'no-cache'
-      end
-    end
-
     error Errno::ENOENT do
       status 404
     end
@@ -109,26 +88,20 @@ module Mifo
 
     get '/' do
       @posts = Post.latest
-      etag sha1(@posts.map { |p| p.sha1 }.join )
+      #etag sha1(@posts.map { |p| p.sha1 }.join )
       haml :index
-    end
-
-    get %r{/css/([\w_\-]+)\.(css|less)} do |file, ext|
-      output = less :"bootstrap/#{file}"
-      etag sha1(output)
-      output
     end
 
     get %r{/(rss|atom|articles)(.xml)?} do
       @posts = Post.latest
       etag sha1(@posts.map { |p| p.sha1 }.join )
-      content_type 'text/xml;rss;charset=utf-8'
+      content_type 'text/xml;charset=utf-8'
       haml(:rss, :format => :xhtml, :escape_html => true, :layout => false)
     end
 
     get '/:permalink' do
       @post = Post.by_permalink(params[:permalink])
-      etag @post.sha1
+      # etag @post.sha1
       haml :show, :ugly => true
     end
 

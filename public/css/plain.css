@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'EnvyCodeR';
+  src: url('fonts/Envy_Code_R.eot');
+  src: local('Envy Code R'), local('Envy Code'), url('fonts/envy.ttf') format('truetype');
+}
+
+body {
+  font-family: 'EnvyCodeR', monospace;
+  margin : 2pt 20%;
+}
+
+* {
+  color : #000;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+}
+
+a, a:visited, a:active, a:hover {
+  text-decoration : none;
+  border-bottom : 1px solid #ccc;
+  font-weight : bold;
+}
+
+h1, h2, h3, h4, h5, strong,
+h1 *, h2 *, h3 *, h4 *, h5 *, strong * {
+  font-weight : bold;
+}
+
+h2 {
+  font-size : 140%;
+}
+
+a:hover {
+  border-bottom-color : #777;
+  color : #777;
+}
+
+em, blockquote * {
+  font-style : italic;
+}
+
+ul {
+  padding-left : 0px;
+}
+
+ul li {
+  list-style-type : none;
+  padding : 0.5em 0;
+  clear : both;
+}
+
+ul li:before {
+  content : '*';
+  float : left;
+}
+
+nav ul li strong,
+ul li p {
+  float : left;
+  margin-left : 0.5em;
+  margin-top : 0;
+  width : 90%;
+}
+
+.intro {
+  padding : 20px 0;
+  height : 70px;
+  background : transparent url('dot.png') repeat-x bottom;
+  opacity : 0.5;
+}
+
+footer {
+  margin-top : 20px;
+  padding-top : 10px;
+  clear : both;
+  background : transparent url('dot.png') repeat-x top;
+}
+
+.index {
+  width : 60%;
+  float : left;
+}
+
+.right {
+  width: 30%;
+  float : left;
+  padding-top : 0.5em;
+}
+
+pre.sh {
+  background : #eee;
+  padding : 0.3em;
+  border : 1px solid #ddd;
+}

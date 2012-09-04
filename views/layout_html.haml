@@ -1,0 +1,90 @@
+!!! 5
+%html{ :lang => :en }
+  %head
+    %meta{ :charset => 'utf-8' }
+    %meta{ :name => :viewport, :content => "width=device-width, initial-scale=1.0" }
+    %title mfojtik.blog
+    %script{ :src => '/js/jquery-1.7.1.min.js' }
+    %script{ :src => '/js/bootstrap-alert.js' }
+    %script{ :src => '/js/jquery.cuteTime.min.js'}
+    %script{ :src => '/js/app.js' }
+    /[if lt IE 9]
+      %script{ :src => '/js/html5.js' }
+    %script{ :type => 'text/javascript', :src => 'http://use.typekit.com/jko7fyl.js' }
+    %script{ :type => 'text/javascript', :src => '/js/sh.js'}
+    %script{ :type => 'text/javascript', :src => '/js/sh_ruby.js'}
+    :javascript
+      try{Typekit.load();}catch(e){}
+    %link{ :href => '/css/bootstrap.css', :rel => :stylesheet }
+    %link{ :href => '/css/application.css', :rel => :stylesheet }
+    %link{ :href => '/js/sh.css', :rel => :stylesheet }
+    %body
+      .container
+        .content
+          .page-header.row
+            .span7
+              %h1
+                - if @title
+                  =@title
+                - else
+                  %a{ :href => '/'} Michal Fojtik's brain
+            .span4.bar
+              %a{ :href => 'http://www.linkedin.com/in/michalfojtik', :target => '_blank', :title => "About me" }
+                %i.icon-user
+              %a{ :href => 'http://github.com/mifo', :target => '_blank', :title => "Github code" }
+                %i.icon-cog
+              %a{ :href => '/rss', :title => "RSS stream", :rel => :rss }
+                %i.icon-fire
+          .row
+            .span7.main=yield
+            .span4
+              %iframe{ :src => "http://widget.stagram.com/in/mfojtik/?s=95&w=3&h=4&b=1&p=5", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :style => "border:none;overflow:hidden;width:330px; height: 440px" }
+              %script{ :src => 'http://widgets.twimg.com/j/2/widget.js'}
+              :javascript
+                new TWTR.Widget({
+                  version: 2,
+                  type: 'profile',
+                  rpp: 4,
+                  interval: 3000,
+                  width: 300,
+                  height: 309,
+                  theme: {
+                    shell: {
+                      background: 'transparent',
+                      color: '#333333'
+                    },
+                    tweets: {
+                      background: 'transparent',
+                      color: '#333333',
+                      links: '#111111'
+                    }
+                  },
+                  features: {
+                    scrollbar: false,
+                    loop: false,
+                    live: true,
+                    hashtags: true,
+                    timestamp: true,
+                    avatars: false,
+                    behavior: 'default'
+                  }
+                }).render().setUser('mfojtik').start();
+
+        %footer
+          %p
+            &copy;  mfojtik's brain is licensed under a
+            %a{:href => 'http://creativecommons.org/licenses/by-sa/3.0/us', :target => '_blank'}
+              Creative Commons Attribution-Share Alike 3.0 United
+
+  :javascript
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.mifo.sk/" : "http://stats.mifo.sk/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+  :javascript
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+  %noscript
+    %p
+      %img{:src => 'http://stats.mifo.sk/piwik.php?idsite=1', :style => 'border:0', :alt => ''}

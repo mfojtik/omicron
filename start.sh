@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rerun "thin -e development -R config.ru start"
+thin -e development -R config.ru start -p 3000

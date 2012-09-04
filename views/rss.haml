@@ -1,25 +1,17 @@
-%rss(version="2.0"
-     xmlns:content="http://purl.org/rss/1.0/modules/content/"
-     xmlns:atom="http://www.w3.org/2005/Atom")
+%feed{ :xmlns => 'http://www.w3.org/2005/Atom' }
+  %title mfojtik's blog
+  %link{ :href => 'http://mifo.sk/rss', :rel => :self }
+  %link{ :href => 'http://mifo.sk'}
+  %updated=@posts.first.last_updated.strftime('%a, %d %b %y %T %z')
+  %id http://mifo.sk
+  %author
+    %name Michal Fojtik
+    %email mi@mifo.sk
 
-  %channel
-    %title mfojtik's blog
-    %link http://mifo.sk/rss
-    %atom:link(href="http://mifo.sk"
-               rel="self"
-               type="application/rss+xml")
-    %description Michal Fojtik's sick mind
-    %language en-US
-    %lastBuildDate=@posts.first.last_updated.strftime('%a, %d %b %y %T %z')
-    %webMaster mi@mifo.sk (Michal Fojtik)
-
-    -@posts.each do |post|
-      %item
-        %title=post.title
-        %link="http://mifo.sk/#{post.permalink}"
-        %description=text(post.body)[0..50]
-        %author mi@mifo.sk (Michal Fojtik)
-        %pubDate=post.last_updated.strftime('%a, %d %b %y %T %z')
-        %guid(isPermaLink='true')="http://mifo.sk/#{post.permalink}"
-        %comments='http://mifo.sk/' + post.permalink + '#disqus_thread'
-        %content:encoded <![CDATA[#{markdown(post.body)).text}]]>
+  - @posts.each do |post|
+    %entry
+      %title=post.title
+      %link{ :rel => :alternate, :type => 'text/html', :href => 'http://mifo.sk/%s' % post.permalink}
+      %published=post.last_updated.strftime('%a, %d %b %y %T %z')
+      %updated=post.last_updated.strftime('%a, %d %b %y %T %z')
+      %content{ :type => :html}=markdown(post.body)
