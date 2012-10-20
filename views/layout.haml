@@ -10,23 +10,23 @@
     %link{ :href => '/css/plain.css', :rel => :stylesheet }
     %body
       %h1
-        (◕_◕)
         %a{ :href => '/'}="mfojtik.blog"
-      %div.intro
-        I'm a Open Source contributor and I &#x2764; the Ruby programming language.
-        I contribute to
-        %a{ :href => 'https://github.com/mifo'} various projects
-        like
-        %a{ :href => 'http://deltacloud.org'} &#916;cloud API
-        ,
-        %a{ :href => 'http://aeolusproject.org'} Aeolus
-        ,
-        %a{ :href => 'http://github.com/mifo/tracker'} Tracker
-        etc.
-        I'm hopeless Apple user, but I contribute also to Fedora and
-        other Linux distributions. For more informations visit my
-        %a{ :href => 'http://www.linkedin.com/in/michalfojtik'} LinkedIn
-        page. And yes, I like plain-text.
+      - unless @post
+        %div.intro
+          I'm a Open Source contributor and I &#x2764; the Ruby programming language.
+          I contribute to
+          %a{ :href => 'https://github.com/mifo'} various projects
+          like
+          %a{ :href => 'http://deltacloud.org'} &#916;cloud API
+          ,
+          %a{ :href => 'http://aeolusproject.org'} Aeolus
+          ,
+          %a{ :href => 'http://github.com/mifo/tracker'} Tracker
+          etc.
+          I'm hopeless Apple user, but I contribute also to Fedora and
+          other Linux distributions. For more informations visit my
+          %a{ :href => 'http://www.linkedin.com/in/michalfojtik'} LinkedIn
+          page. And yes, I like plain-text.
       =yield
 
   :javascript

@@ -1,17 +1,10 @@
-@font-face {
-  font-family: 'EnvyCodeR';
-  src: url('fonts/Envy_Code_R.eot');
-  src: local('Envy Code R'), local('Envy Code'), url('fonts/envy.ttf') format('truetype');
-}
-
 body {
-  font-family: 'EnvyCodeR', monospace;
+  font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif;
   margin : 2pt 20%;
 }
 
 * {
   color : #000;
-  font-size: 13px;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
@@ -29,7 +22,12 @@ h1 *, h2 *, h3 *, h4 *, h5 *, strong * {
 }
 
 h2 {
-  font-size : 140%;
+  font-size : 18px;
+}
+
+h1 {
+  text-align : right;
+  font-size : 28px;
 }
 
 a:hover {
