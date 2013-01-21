@@ -1,19 +1,18 @@
-%article
-  %header
-    %h2=@post.title
-  =markdown(@post.body)
-  %footer
-    %ul.breadcrumb
-      %li
-        %time{ :pubdate => :pubdate}=@post.last_updated
-    %a.twitter-share-button{ :'data-via' => :mfojtik, :'data-lang' => :en, :href => "https://twitter.com/share" } Tweet
-    .g-plusone{ :'data-size' => 'medium', :style => :inline }
-    %script{ :src => 'http://disqus.com/forums/mfojtik/embed.js'}
-    #disqus_thread
-    :javascript
-      var disqus_shortname = 'mfojtik';
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+.grid_12
+  %article
+    =markdown(@post.body)
+    %footer
+      %ul.breadcrumb
+        %li
+          %time{ :pubdate => :pubdate}=@post.last_updated
+      %a.twitter-share-button{ :'data-via' => :mfojtik, :'data-lang' => :en, :href => "https://twitter.com/share" } Tweet
+      .g-plusone{ :'data-size' => 'medium', :style => :inline }
+      %script{ :src => 'http://disqus.com/forums/mfojtik/embed.js'}
+      #disqus_thread
+      :javascript
+        var disqus_shortname = 'mfojtik';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();

@@ -1,4 +1,4 @@
-%div.index
+.grid_8.index
   %nav
     %ul
       - @posts.each do |p|
@@ -6,7 +6,7 @@
           %strong
             %a{ :href => '/' + p.permalink }=p.title
 
-%div.right
+.grid_4.right
   %script{ :src => 'http://widgets.twimg.com/j/2/widget.js'}
   :javascript
     new TWTR.Widget({
@@ -23,7 +23,6 @@
         },
         tweets: {
           background: 'transparent',
-          links: '#111111'
         }
       },
       features: {
