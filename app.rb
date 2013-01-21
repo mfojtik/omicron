@@ -69,18 +69,8 @@ module Mifo
 
     helpers do
       def markdown(text)
-        renderer = Redcarpet::Render::HTML.new(
-          :no_links => false,
-          :xhtml => true,
-          :with_toc_data => true
-        )
-        m = Redcarpet::Markdown.new(renderer,
-                                    :autolink => true,
-                                    :lax_html_blocks => true,
-                                    :space_after_headers => true)
-        HtmlPress.compress(m.render(text))
+        Kramdown::Document.new(text, :auto_ids => false).to_html
       end
-
       def text(t)
         Nokogiri::HTML(t).text
       end

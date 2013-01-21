@@ -1,10 +1,6 @@
 source :rubygems
 
 gem 'sinatra', :require => 'sinatra/base'
-#gem 'rack-cache', :require => 'rack/cache'
 gem 'haml'
-gem 'redcarpet'
+gem 'kramdown'
 gem 'nokogiri'
-gem 'html_press'
-gem 'rerun'
-gem 'thin'

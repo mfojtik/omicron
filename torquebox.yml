@@ -1,0 +1,6 @@
+application: 
+  env: production
+web: 
+  host: blog.mifo.sk
+environment:
+  BUNDLE_WITHOUT: "development:test"
