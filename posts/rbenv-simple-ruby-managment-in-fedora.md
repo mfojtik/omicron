@@ -27,20 +27,18 @@ Installing rbenv on Fedora 17 is easy. There is no need to run obscured scripts
 from internet using curl. No need for root privileges.You just need to clone
 rbenv GIT repo:
 
-<pre class='sh'>
-cd $HOME
-git clone git://github.com/sstephenson/rbenv.git .rbenv
-</pre>
+    cd $HOME
+    git clone git://github.com/sstephenson/rbenv.git .rbenv
 
 Now to have access to executables installed by gems, you need to alter your
 $PATH:
-<pre class='sh'>
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-</pre>
+
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+
 And finally you need to load 'rbenv' to enable bash autocompletion and plugins:
-<pre class='sh'>
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-</pre>
+
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
 Now you're ready to use rbenv. Do not forget to reload your bash session to
 pickup new environment.
 
@@ -48,19 +46,19 @@ By default, rbenv does not include any fancy installer and it forces you to
 install all Ruby versions by hand, using traditional configure && make.
 
 If you like more user-friendly method, then you need install 'ruby-build' plugin:
-<pre class='sh'>
-mkdir -p ~/.rbenv/plugins
-git clone git://github.com/sstephenson/ruby-build.git \
-   -O ~/.rbenv/plugins/ruby-build
-</pre>
+
+    mkdir -p ~/.rbenv/plugins
+    git clone git://github.com/sstephenson/ruby-build.git \
+       -O ~/.rbenv/plugins/ruby-build
+
 Now, you can use more friendly <code>rbenv install VERSION</code> command. To get list
 of all possible platforms, type 'rbenv install -l'.
 
 If you're on Fedora 17 and you have problems building Ruby 1.8.7-p370 (dl.c)
 you can fix it by using this command:
-<pre class='sh'>
-CONFIGURE_OPTS=--without-dl rbenv install 1.8.7-p370
-</pre>
+
+    CONFIGURE_OPTS=--without-dl rbenv install 1.8.7-p370
+
 Switching between different Ruby versions is not so user-friendly as with RVM
 (but you can install plugin to make it looks the same ;), but you satisfy comfort
 by having clean environment and 100% original not patched Ruby.
