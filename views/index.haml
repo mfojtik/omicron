@@ -5,6 +5,7 @@
         %li
           %strong
             %a{ :href => '/' + p.permalink }=p.title
+
 %div.right
   %script{ :src => 'http://widgets.twimg.com/j/2/widget.js'}
   :javascript
@@ -13,16 +14,15 @@
       type: 'profile',
       rpp: 2,
       interval: 3000,
-      width: 300,
       height: 309,
+      width: 210,
       theme: {
         shell: {
           background: 'transparent',
-          color: '#333333'
+          color: '#3D423C'
         },
         tweets: {
           background: 'transparent',
-          color: '#333333',
           links: '#111111'
         }
       },

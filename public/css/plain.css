@@ -1,10 +1,10 @@
 body {
-  font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif;
+  font: 13px/1.3 Helvetica,arial,freesans,clean,sans-serif;
   margin : 2pt 20%;
 }
 
 * {
-  color : #000;
+  color : #222;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
@@ -13,7 +13,6 @@ body {
 a, a:visited, a:active, a:hover {
   text-decoration : none;
   border-bottom : 1px solid #ccc;
-  font-weight : bold;
 }
 
 h1, h2, h3, h4, h5, strong,
@@ -35,6 +34,18 @@ a:hover {
   color : #777;
 }
 
+body > h1 > a {
+  color : #3D423C;
+  border : 1px solid #ccc;
+  background : #DEDFC5;
+  width : 35%;
+  height : 66px;
+  min-width : 163px;
+  text-align : center;
+  padding-top : 40px;
+  float : right;
+}
+
 em, blockquote * {
   font-style : italic;
 }
@@ -46,49 +57,57 @@ ul {
 ul li {
   list-style-type : none;
   padding : 0.5em 0;
-  clear : both;
-}
-
-ul li:before {
-  content : '*';
-  float : left;
-}
-
-nav ul li strong,
-ul li p {
-  float : left;
-  margin-left : 0.5em;
-  margin-top : 0;
-  width : 90%;
 }
 
 .intro {
-  padding : 20px 0;
-  height : 70px;
-  background : transparent url('dot.png') repeat-x bottom;
-  opacity : 0.5;
+  padding : 0;
+}
+
+.intro > blockquote {
+  margin : 0;
+  color : #3D423C;
+  width : 60%;
+  background : #C8C9B5;
+  padding : 10px;
+  border : 1px solid #ccc;
 }
 
 footer {
   margin-top : 20px;
   padding-top : 10px;
   clear : both;
-  background : transparent url('dot.png') repeat-x top;
 }
 
 .index {
   width : 60%;
+  padding : 11px 19px 0 3px;
   float : left;
 }
 
 .right {
-  width: 30%;
-  float : left;
-  padding-top : 0.5em;
+  margin-top : 30px;
+  width: 35%;
+  padding : 1px;
+  float : right;
+  background-color : #F5F7BD;
+  color : #3D423C;
 }
 
-pre.sh {
+pre {
   background : #eee;
   padding : 0.3em;
   border : 1px solid #ddd;
+}
+
+.twtr-hd {
+  text-align : right;
+}
+
+.twtr-ft {
+  display : none;
+}
+
+header h2 {
+  padding : 47px 0;
+  height : 23px;
 }
