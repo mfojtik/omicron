@@ -1,4 +1,4 @@
-title: How we start using Sequel in Deltacloud
+title: How we started using Sequel in Deltacloud
 updated: 22/Jan/2013 11:15
 ###
 
