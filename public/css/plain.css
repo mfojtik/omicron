@@ -66,3 +66,8 @@ header h2 {
 .intro {
   padding : 5px 0 5px 0;
 }
+
+.social p {
+  float : right;
+  padding : 0; margin : 0;
+}

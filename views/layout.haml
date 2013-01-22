@@ -2,7 +2,6 @@
 %html{ :lang => :en }
   %head
     %meta{ :charset => 'utf-8' }
-    %meta{ :name => :viewport, :content => "width=device-width, initial-scale=1.0" }
     %title mfojtik.blog
     %script{ :src => '/js/jquery-1.7.1.min.js' }
     %script{ :src => '/js/jquery.cuteTime.min.js'}
@@ -13,44 +12,23 @@
       .container_12
         - unless @post
           .grid_7.intro.bio
-            %blockquote
-              Who I am?
-              I'm a Open Source contributor and I &#x2764; Ruby language.
-              I contribute to
-              %a{ :href => 'https://github.com/mifo'} various projects
-              like
-              %a{ :href => 'http://deltacloud.org'} &#916;cloud API
-              ,
-              %a{ :href => 'http://aeolusproject.org'} Aeolus
-              ,
-              %a{ :href => 'http://github.com/mifo/tracker'} Tracker
-              ,
-              %a{ :href => 'http://github.com/mifo/rbovirt'} rbovirt
-              etc.
-              I'm hopeless Apple user, but I contribute also to Fedora and
-              other Linux distributions. For more informations visit my
-              %a{ :href => 'http://www.linkedin.com/in/michalfojtik'} LinkedIn
-              page.
+            %blockquote=partial :bio
           %div{ :class => 'grid_4 page_title' }
             %a{ :href => 'http://mifo.sk/rss'} RSS
             %a{ :href => 'http://github.com/mifo'} Github
             %a{ :href => 'http://www.linkedin.com/profile/view?id=23119196'} CV
             %a{ :href => 'http://pgp.mit.edu:11371/pks/lookup?search=mfojtik%40redhat.com'} GPG
         - else
-          .grid_1.push_11
-            %a{ :href => '/', :rel => :home }='<- back'
+          %nav
+            .grid_1
+              %a{ :href => '/', :rel => :home, :class => :home }='← back'
+            .grid_3.push_8.social
+              =partial :social
           .grid_12.title
             %header
               %h1=@post.title
 
         =yield
 
-  :javascript
-    var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.mifo.sk/" : "http://stats.mifo.sk/");
-    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-  :javascript
-    try {
-    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-    piwikTracker.trackPageView();
-    piwikTracker.enableLinkTracking();
-    } catch( err ) {}
+  = partial :piwik
+  = partial :google if @post

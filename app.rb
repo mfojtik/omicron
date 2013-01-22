@@ -12,6 +12,9 @@ module Mifo
     def text(t)
       Nokogiri::HTML(t).text
     end
+    def partial(name)
+      markdown(File.read(File.join(File.dirname(__FILE__), 'views', 'partials', "#{name}.md")))
+    end
   end
 
   module PostClassMethods
