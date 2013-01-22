@@ -35,6 +35,11 @@ ul li {
   padding : 0.5em 0;
 }
 
+article > ul li {
+  list-style-type : square;
+  margin-left : 20px;
+}
+
 footer {
   margin-top : 20px;
   padding-top : 10px;
