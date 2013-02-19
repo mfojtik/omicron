@@ -21,37 +21,43 @@ every time you change something.
 Well, we are not using Rails, but Sequel. To write a new migration for Sequel,
 you need to do the following:
 
-1. Create a new file inside "server/db/migrations/"
+**1. Create a new file inside server/db/migrations/* directory:**
 
 This is the folder where we store DB migrations.
 
-2. The file should start with a number in chronological order:
+**2. The file should start with a number in chronological order:**
 
-  1_add_realm_to_machine_template.rb
-  2_add_something_to_some_entity.rb
-  3_your_file_here.rb
+* `1_add_realm_to_machine_template.rb`
+* `2_add_something_to_some_entity.rb`
+* `3_your_file_here.rb`
 
-3. The content of file should be following:
+**3. The content of file should be following:**
 
-    Sequel.migration do
-      up do
-        add_column :entities, :realm, String
-      end
-      down do
-        drop_column :entities, :realm
-      end
-    end
+    # 3_your_file_here.rb:
+    #
 
-The 'up' section basically says what should happen when this migration is
+    Sequel.migration do
+
+      up do
+        add_column :entities, :realm, String
+      end
+
+      down do
+        drop_column :entities, :realm
+      end
+
+    end
+
+The *up* section basically says what should happen when this migration is
 executed. In this example, we are adding a new column named 'realm' into the
 'entities' table.
 
-The 'down' section describes what should happen when someone decides to
+The *down* section describes what should happen when someone decides to
 rollback your migration.
 
-After you do this, you need to run the 'deltacloud-db-upgrade' command:
+After you do this, you need to run the following command:
 
-    $ ./bin/deltacloud-db-upgrade
+    $ ./bin/deltacloud-db-upgrade
 
 (or just `$ deltacloud-db-upgrade` if you are gem user.)
 
