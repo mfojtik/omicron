@@ -35,7 +35,7 @@ And we need to somehow follow this movement too.
 As a first step I started working on moving Rabbit (our DSL) away from the
 Deltacloud project to make it as upstream rubygem, that could be included into
 any Sinatra application (both modular and non-modular). I created a
-[repository](https://github.com/mifo/sinatra-rabbit) on
+[repository](https://github.com/mfojtik/sinatra-rabbit) on
 [Github](http://github.com) and today, version
 [1.0](http://rubygems.org/gems/sinatra-rabbit/versions/1.0) was released.
 

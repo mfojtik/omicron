@@ -3,7 +3,7 @@ updated: 19/Feb/2013 11:15
 ###
 
 As we added the [database support to Deltacloud
-CIMI](http://mifo.sk/how-we-start-using-database-in-deltacloud) using [Sequel
+CIMI](http://mfojtik.im/how-we-start-using-database-in-deltacloud) using [Sequel
 ORM](http://sequel.rubyforge.org/), the one problem we were thinking about were database migrations.
 What if someone started using Deltacloud CIMI and meanwhile we made some changes
 to the database schema?  For example, what if we added, renamed or deleted a new column in table?

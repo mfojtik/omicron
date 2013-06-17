@@ -41,9 +41,9 @@ is written entirely in this framework, so changing it back to plain routes would
 cause Rabbit to loose all the powerful features it has.
 
 So I [extracted
-Rabbit](http://mifo.sk/creating-rest-based-api-with-sinatra-rabbit) out from
+Rabbit](http://mfojtik.im/creating-rest-based-api-with-sinatra-rabbit) out from
 Deltacloud API and published it on
-[Github](http://github.com/mifo/sinatra-rabbit). I rewrote it from scratch, but
+[Github](http://github.com/mfojtik/sinatra-rabbit). I rewrote it from scratch, but
 I tried very hard to preserve all the features and syntax we are used to work
 with. I think I was pretty successful in this and Rabbit is now feature complete
 with ~90% of code coverage.
@@ -54,11 +54,11 @@ switching' or 'capabilities'. Those bits were very important to us, so changing
 them or removing them would break our promise of backward compatibility.
 
 So currently, I have almost all
-[collections](https://github.com/mifo/deltacloud-modular/tree/master/lib/deltacloud/collections)
+[collections](https://github.com/mfojtik/deltacloud-modular/tree/master/lib/deltacloud/collections)
 ported to modular Deltacloud API, and almost all drivers work as well. Those
 drivers which do not work now , require just small tweaks to start working
 properly. You can see the progress in another [Github
-repository](http://github.com/mifo/deltacloud-modular).
+repository](http://github.com/mfojtik/deltacloud-modular).
 
 Of course, I have made big changes to our internal code structure. First, all
 collections are implemented as independent `Sinatra::Base` classes and isolated

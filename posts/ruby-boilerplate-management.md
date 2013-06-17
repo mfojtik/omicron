@@ -67,4 +67,4 @@ in 'GIST_ID;description' format. This will allow to search and list available
 boilerplates. If you have a boiler plate you want to share, simply open an pull
 request on the GIST above.
 
-To learn more, read the code, navigate to [boilerplate GIT repo](https://github.com/mifo/boilerplater).
+To learn more, read the code, navigate to [boilerplate GIT repo](https://github.com/mfojtik/boilerplater).

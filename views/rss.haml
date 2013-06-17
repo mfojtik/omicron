@@ -1,9 +1,9 @@
 %feed{ :xmlns => 'http://www.w3.org/2005/Atom' }
   %title mfojtik's blog
-  %link{ :href => 'http://mifo.sk/rss', :rel => :self }
-  %link{ :href => 'http://mifo.sk'}
+  %link{ :href => 'http://mfojtik.im/rss', :rel => :self }
+  %link{ :href => 'http://mfojtik.im'}
   %updated=@posts.first.last_updated.strftime('%a, %d %b %y %T %z')
-  %id http://mifo.sk
+  %id http://mfojtik.im
   %author
     %name Michal Fojtik
     %email mi@mifo.sk
@@ -11,7 +11,7 @@
   - @posts.each do |post|
     %entry
       %title=post.title
-      %link{ :rel => :alternate, :type => 'text/html', :href => 'http://mifo.sk/%s' % post.permalink}
+      %link{ :rel => :alternate, :type => 'text/html', :href => 'http://mfojtik.im/%s' % post.permalink}
       %published=post.last_updated.strftime('%a, %d %b %y %T %z')
       %updated=post.last_updated.strftime('%a, %d %b %y %T %z')
       %content{ :type => :html}=markdown(post.body)
